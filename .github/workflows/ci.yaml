@@ -2,7 +2,7 @@ name: CI Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ] # 當 main 分支有 push 時觸發
+    branches: [ "main" ]
 
 jobs:
   build-and-push:
@@ -22,6 +22,5 @@ jobs:
         with:
           context: .
           push: true
-          # ⚠️ 我們使用 GitHub Run Number 當作 image tag
-          # 這樣 tag 永遠是唯一的 (v1, v2, v3...)
+          # 使用 GitHub Run Number 當作 image tag
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/k8s-demo-app:${{ github.run_number }}
